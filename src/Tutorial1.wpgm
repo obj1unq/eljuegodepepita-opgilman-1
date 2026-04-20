@@ -1,0 +1,16 @@
+import wollok.game.*
+import pepita.*
+import silvestre.*
+
+
+program juego {
+  game.width(10)
+  game.height(10)
+  game.cellSize(50)
+  game.title("Juego")
+  game.addVisual(silvestre)
+  game.addVisualCharacter(pepita)
+  keyboard.any().onPressDo{silvestre.iaMovement()}
+  game.onCollideDo(pepita, {cambioImagen =>pepita.image("pepita-gris.png")})
+  game.start()
+}

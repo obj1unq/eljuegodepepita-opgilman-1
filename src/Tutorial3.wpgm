@@ -1,0 +1,44 @@
+import wollok.game.*
+import pepita.*
+import silvestre.*
+import comidas.*
+import extras.*
+
+program juego {
+  game.width(10)
+  game.height(10)
+  game.cellSize(50)
+  game.title("Juego")
+  game.boardGround("fondo.jpg")
+  game.addVisual(silvestre)
+  game.addVisual(pepita)
+  game.addVisual(manzana)
+  game.addVisual(alpiste)
+  game.addVisual(nido)
+  
+  
+  (0 .. (game.width() - 1)).forEach(
+    { i =>
+      // Muro inferior
+      game.addVisual(new Muro(position = game.at(i, 0)))
+      return // Muro superior
+      game.addVisual(new Muro(position = game.at(i, game.height() - 1)))
+    }
+  )
+  
+  (0 .. (game.height() - 1)).forEach(
+    { i =>
+      // Muro izquierdo
+      game.addVisual(new Muro(position = game.at(0, i)))
+      return // Muro derecho
+      game.addVisual(new Muro(position = game.at(game.width() - 1, i)))
+    }
+  )
+  
+  pepita.movementPlayer()
+  silvestre.silvestreMovement()
+  game.onCollideDo(pepita, { objeto => objeto.serChocadoPor(pepita) })
+  
+  game.start()
+}
+
