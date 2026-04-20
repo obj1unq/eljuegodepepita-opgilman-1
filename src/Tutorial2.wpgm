@@ -20,7 +20,7 @@ program juego {
     { i =>
       // Muro inferior
       game.addVisual(new Muro(position = game.at(i, 0)))
-      return // Muro superior
+      // Muro superior
       game.addVisual(new Muro(position = game.at(i, game.height() - 1)))
     }
   )
@@ -29,7 +29,7 @@ program juego {
     { i =>
       // Muro izquierdo
       game.addVisual(new Muro(position = game.at(0, i)))
-      return // Muro derecho
+      // Muro derecho
       game.addVisual(new Muro(position = game.at(game.width() - 1, i)))
     }
   )
